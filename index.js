@@ -72,6 +72,7 @@ app.use(JWT.checkToken);
  *************************/
 // 'public' folder routes for ejs
 app.use(static);
+app.use('/', require('./routes'));
 
 /*************************
  * Express Error Handler *
