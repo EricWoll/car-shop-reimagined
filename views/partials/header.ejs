@@ -1,0 +1,10 @@
+<header id="top-header">
+    <span class="site-name">
+        <a href="/" title="Return to home page">CSE Motors</a>
+    </span>
+    <div id="tools">
+        <% if (locals.account_firstname == undefined) { %> <a title="Click to log in" href="/account/login">Login</a> <%
+        } else { %> <a title="Click to log in" href="/account/logout"><%= locals.account_firstname %></a> <% } %>
+        
+    </div>
+</header>
