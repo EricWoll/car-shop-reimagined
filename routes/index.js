@@ -1,8 +1,7 @@
 const routes = require('express').Router();
 
-// Add routes here:
-/* Example:
-routes.use('/adoption-records', adoption_record);
-*/
+const clasification = require('./classifications.route');
+
+routes.use('/', clasification);
 
 module.exports = routes;

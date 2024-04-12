@@ -7,9 +7,11 @@ const db = {};
 db.mongoose = mongoose;
 db.uri = dbConfig.uri;
 
-// Add model require statements
-/* Example:
-db.animals = require('./animals')(mongoose);
-*/
+db.employeeAccount = require('./employeeAccount.model')(mongoose);
+db.userAccount = require('./userAccount.model')(mongoose);
+db.inventoryClassification = require('./inventoryClassification.model')(
+    mongoose
+);
+db.inventory = require('./inventory.model')(mongoose);
 
 module.exports = db;

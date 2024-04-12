@@ -17,25 +17,21 @@ const GenHTML = require('./utilities/generateHTML');
  *******************************/
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.set(expressLayouts);
+app.use(expressLayouts);
 app.set('layout', './layouts/layout');
 
 /*************************
  * Middleware *
  **************************/
-// Change out for Mongoose
-// app.use(
-//     session({
-//         store: new (require('connect-pg-simple')(session))({
-//             createTableIfMissing: true,
-//             pool,
-//         }),
-//         secret: process.env.SESSION_SECRET,
-//         resave: true,
-//         saveUninitialized: true,
-//         name: 'sessionId',
-//     })
-// );
+// cookies session
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: true,
+        saveUninitialized: true,
+        name: 'sessionId',
+    })
+);
 app.use(
     cors({
         methods: ['POST', 'PUT', 'GET', 'DELETE'],
@@ -79,7 +75,7 @@ app.use('/', require('./routes'));
  *************************/
 app.use(async (error, req, res, next) => {
     let nav = await GenHTML.nav();
-    console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+    console.error(`Error at: "${req.originalUrl}": ${error.message}`);
     if (error.status == 404) {
         message = error.message;
     } else {
